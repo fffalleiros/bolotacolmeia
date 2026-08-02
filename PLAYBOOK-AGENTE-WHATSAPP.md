@@ -45,7 +45,7 @@ O agente **não é** um fluxo de chatbot com menuzinhos. É: mensagem → LLM de
 
 **D2. API oficial (Cloud API da Meta) — recomendada.** Alternativa não-oficial (Z-API, Evolution API) é mais fácil de começar, mas viola os termos da Meta e o risco é banimento do número. Como é o negócio da sua esposa (canal crítico), use a oficial. Custo real: **mensagens de resposta dentro da janela de 24h são gratuitas**; você só paga templates proativos (~R$ 0,03 utility). Para 1 negócio, isso é ~R$ 0–15/mês.
 
-**D3. Onde roda o código.** Se o CRM foi feito no **Lovable** (caso desta seção): o backend já é Supabase por baixo — hospede o webhook como **Edge Function no mesmo projeto**, zero infra nova. Se for outra stack sem esse recurso: um servidorzinho Node/Python no Railway/Render (~US$ 5/mês). Você precisa de UMA rota HTTPS pública: `POST /webhook`.
+**D3. Onde roda o código.** Se o CRM foi feito no **Lovable** (caso desta seção): isso não é uma escolha, é obrigatório — a *service role key* do banco **não é extraível** do Lovable Cloud (nem pelo dashboard, nem para você copiar). Ela só existe como variável de ambiente dentro de uma Edge Function. Logo, o webhook **tem que** rodar como Edge Function no mesmo projeto; não há como montar um servidor externo (Railway/Render) com acesso de escrita total ao banco. Se sua stack não é Lovable/Supabase: aí sim, servidorzinho Node/Python externo (~US$ 5/mês) com UMA rota HTTPS pública `POST /webhook`.
 
 **D4. Escopo da v1 — escreva numa frase e cole na parede.** Sugestão: *"O agente responde perguntas sobre pedidos/clientes consultando o banco, registra pedido novo como rascunho e envia para ela aprovar."* Tudo fora disso a v1 responde: "Vou passar para a Bia, ela te responde já 😉".
 
@@ -55,12 +55,13 @@ O agente **não é** um fluxo de chatbot com menuzinhos. É: mensagem → LLM de
 
 **Você não precisa abrir um Supabase separado.** Quando o Lovable Cloud está ativo num projeto, ele já provisiona um projeto Supabase de verdade por baixo dos panos — banco Postgres, autenticação, storage e Edge Functions. O Lovable dá uma casca visual em cima disso, mas o motor é o mesmo banco que o CRM dela já usa. O agente vai ler e escrever nesse banco; não existe "outro banco" para criar.
 
-Isso também resolve a D3: dá para hospedar o webhook do WhatsApp como uma **Edge Function dentro do mesmo projeto** — ela já nasce com acesso ao banco, sem precisar de Railway/Render.
+Isso também resolve a D3: dá para hospedar o webhook do WhatsApp como uma **Edge Function dentro do mesmo projeto** — ela já nasce com acesso ao banco, sem precisar de Railway/Render. E, no Lovable Cloud, essa é a **única** forma de ter acesso de escrita total ao banco (ver D3) — a service role key não sai do projeto.
 
 **O que precisa estar pronto, em ordem:**
 1. **Views somente-leitura** — o agente consulta clientes/pedidos/agenda sem ver colunas sensíveis nem rodar SQL livre.
-2. **Uma função de escrita controlada (RPC)** — o agente cria pedido como `rascunho`, nunca escreve direto nas tabelas.
-3. **A Edge Function do webhook** — recebe a mensagem do WhatsApp, chama o Claude, executa a tool certa, responde.
+2. **Verificar triggers existentes que reagem a INSERT/UPDATE** nas tabelas que o agente vai escrever (ex.: baixa automática de estoque numa venda). Se algum trigger não distinguir "rascunho ainda não aprovado" de "confirmado", ele vai disparar cedo demais quando o agente criar o registro — descubra e corrija **antes** do próximo passo.
+3. **Uma função de escrita controlada (RPC)** — o agente cria pedido como `rascunho`, nunca escreve direto nas tabelas.
+4. **A Edge Function do webhook** — recebe a mensagem do WhatsApp, chama o Claude, executa a tool certa, responde.
 
 Você não escreve nada disso à mão — pede ao próprio Lovable, com os três prompts abaixo, **um de cada vez**, nesta ordem.
 
@@ -78,6 +79,8 @@ Por favor, sem alterar nada:
 ```
 
 Use o resultado para ajustar os nomes de tabela/coluna reais nos prompts seguintes (os nomes abaixo são um chute razoável, não necessariamente os dela).
+
+**Antes do Prompt 2, se o Prompt 1 revelou algum trigger nas tabelas que o agente vai escrever** (baixa de estoque, atualização de saldo, o que for): peça ao Lovable para mostrar o código dele e confirme se ele age em cima do registro *assim que criado* ou só quando algum campo de status/aprovação muda. Se agir sempre, peça a correção (gate por status) antes de seguir — senão o "rascunho" do agente já vai produzir efeito colateral real no banco, antes mesmo de ela aprovar.
 
 **Prompt 2 — Views seguras + função de escrita:**
 
