@@ -45,9 +45,95 @@ O agente **não é** um fluxo de chatbot com menuzinhos. É: mensagem → LLM de
 
 **D2. API oficial (Cloud API da Meta) — recomendada.** Alternativa não-oficial (Z-API, Evolution API) é mais fácil de começar, mas viola os termos da Meta e o risco é banimento do número. Como é o negócio da sua esposa (canal crítico), use a oficial. Custo real: **mensagens de resposta dentro da janela de 24h são gratuitas**; você só paga templates proativos (~R$ 0,03 utility). Para 1 negócio, isso é ~R$ 0–15/mês.
 
-**D3. Onde roda o código.** Se o CRM dela foi feito com Supabase (ou similar): use **uma Edge Function / função serverless no mesmo projeto** — zero infra nova. Se não: um servidorzinho Node/Python no Railway/Render (~US$ 5/mês). Você precisa de UMA rota HTTPS pública: `POST /webhook`.
+**D3. Onde roda o código.** Se o CRM foi feito no **Lovable** (caso desta seção): o backend já é Supabase por baixo — hospede o webhook como **Edge Function no mesmo projeto**, zero infra nova. Se for outra stack sem esse recurso: um servidorzinho Node/Python no Railway/Render (~US$ 5/mês). Você precisa de UMA rota HTTPS pública: `POST /webhook`.
 
 **D4. Escopo da v1 — escreva numa frase e cole na parede.** Sugestão: *"O agente responde perguntas sobre pedidos/clientes consultando o banco, registra pedido novo como rascunho e envia para ela aprovar."* Tudo fora disso a v1 responde: "Vou passar para a Bia, ela te responde já 😉".
+
+---
+
+## Fase 0.5 — Preparar o backend, se o CRM foi feito no Lovable
+
+**Você não precisa abrir um Supabase separado.** Quando o Lovable Cloud está ativo num projeto, ele já provisiona um projeto Supabase de verdade por baixo dos panos — banco Postgres, autenticação, storage e Edge Functions. O Lovable dá uma casca visual em cima disso, mas o motor é o mesmo banco que o CRM dela já usa. O agente vai ler e escrever nesse banco; não existe "outro banco" para criar.
+
+Isso também resolve a D3: dá para hospedar o webhook do WhatsApp como uma **Edge Function dentro do mesmo projeto** — ela já nasce com acesso ao banco, sem precisar de Railway/Render.
+
+**O que precisa estar pronto, em ordem:**
+1. **Views somente-leitura** — o agente consulta clientes/pedidos/agenda sem ver colunas sensíveis nem rodar SQL livre.
+2. **Uma função de escrita controlada (RPC)** — o agente cria pedido como `rascunho`, nunca escreve direto nas tabelas.
+3. **A Edge Function do webhook** — recebe a mensagem do WhatsApp, chama o Claude, executa a tool certa, responde.
+
+Você não escreve nada disso à mão — pede ao próprio Lovable, com os três prompts abaixo, **um de cada vez**, nesta ordem.
+
+**Prompt 1 — Descoberta (não muda nada, só mapeia):**
+
+```
+Antes de pedir mudanças, preciso entender o backend atual deste projeto.
+Por favor, sem alterar nada:
+1. Liste todas as tabelas do banco com suas colunas e tipos.
+2. Diga se Row Level Security (RLS) está ativado em cada tabela e quais
+   políticas existem.
+3. Mostre onde nas configurações do projeto eu encontro a URL do projeto
+   Supabase, a "anon key" e a "service role key".
+4. Diga se este projeto já tem alguma Edge Function criada.
+```
+
+Use o resultado para ajustar os nomes de tabela/coluna reais nos prompts seguintes (os nomes abaixo são um chute razoável, não necessariamente os dela).
+
+**Prompt 2 — Views seguras + função de escrita:**
+
+```
+Quero preparar este banco para um agente de IA externo consultar e criar
+registros com segurança, sem dar acesso direto às tabelas.
+
+1. Crie estas views somente-leitura (ajuste os nomes de coluna aos nomes
+   reais das minhas tabelas):
+   - vw_clientes_resumo: id, nome, telefone e outros dados não sensíveis
+     (sem documento, endereço completo ou dados de pagamento).
+   - vw_pedidos_resumo: id, cliente, itens, valor, status, data.
+   - vw_agenda_semana: pedidos ou atendimentos dos próximos 7 dias.
+   Se não tiver certeza do que é sensível, me pergunte antes de decidir.
+
+2. Crie uma função no banco (RPC) chamada criar_pedido_rascunho que recebe
+   cliente_id, itens, valor e data_entrega, insere um novo pedido com
+   status = 'rascunho' e retorna o id criado. Essa função só pode ser
+   chamada pela service role, nunca pelo público (anon).
+
+3. Mantenha o RLS das tabelas originais exatamente como está hoje — essas
+   views e essa função são a única porta de entrada para o agente.
+
+Não crie nenhuma tela nova no app, isso é só estrutura de banco.
+```
+
+**Prompt 3 — A Edge Function do webhook:**
+
+```
+Crie uma Edge Function chamada whatsapp-webhook neste projeto que:
+
+1. No método GET, responde ao desafio de verificação da WhatsApp Cloud API
+   (parâmetros hub.mode, hub.verify_token, hub.challenge), comparando
+   hub.verify_token com um secret chamado WHATSAPP_VERIFY_TOKEN.
+2. No método POST, recebe a mensagem do WhatsApp, extrai o número do
+   remetente, o texto e o message_id.
+3. Chama a API da Anthropic (Claude) usando o secret ANTHROPIC_API_KEY,
+   oferecendo como tools: buscar_cliente, pedidos_do_dia, resumo_financeiro,
+   pendencias e criar_pedido_rascunho (baseadas nas views e na função
+   criadas antes).
+4. Envia a resposta de volta usando a WhatsApp Cloud API, com os secrets
+   WHATSAPP_TOKEN e WHATSAPP_PHONE_NUMBER_ID.
+5. Grava cada mensagem recebida, cada tool chamada e cada resposta enviada
+   numa tabela agente_logs (crie se não existir), guardando o message_id
+   para não processar a mesma mensagem duas vezes.
+6. Importante: essa função é chamada pelo servidor da Meta, não por um
+   usuário logado — configure-a como pública, sem verificação de JWT.
+
+Depois de criar, me diga exatamente onde eu cadastro os secrets
+ANTHROPIC_API_KEY, WHATSAPP_TOKEN, WHATSAPP_VERIFY_TOKEN e
+WHATSAPP_PHONE_NUMBER_ID.
+```
+
+**Onde pegar as credenciais depois:** no menu do projeto Lovable, procure algo como **Cloud / Backend / "Manage backend"** — normalmente abre o **Supabase Studio** real do projeto. Lá: Settings → API → Project URL, anon key e service role key; e uma seção de Secrets/Edge Functions para guardar as chaves da Anthropic e do WhatsApp. Se não achar de primeira, pergunte direto ao Lovable: *"onde vejo a URL e as chaves do Supabase deste projeto?"*
+
+**Saída de emergência:** se o Lovable Cloud algum dia se mostrar travado demais (não deixar ver a service role key, por exemplo), existe a opção **"Connect to Supabase"** com uma conta Supabase própria — dashboard completo, sem intermediário. Comece pelo caminho simples; raramente é preciso.
 
 ---
 
@@ -78,6 +164,8 @@ Passo a passo da Cloud API (gratuita, direto com a Meta, sem BSP):
 Por que começar assim: risco zero (erro do agente = mensagem errada pra ela, não pra cliente), você aprende o que ela realmente pergunta (isso vira o backlog real), e ela cria confiança no bicho antes de delegar.
 
 ### Como dar o banco ao agente COM SEGURANÇA
+
+*Se o CRM é Lovable, isso já foi feito na Fase 0.5 — pule para "O esqueleto do cérebro" abaixo.* Para qualquer outra stack, o princípio é o mesmo:
 
 Nunca dê SQL livre nem a chave admin do banco ao LLM. Em vez disso:
 
@@ -163,7 +251,7 @@ Sinal de prontidão: na Fase 2/3, ela usa o agente **todo dia** e a taxa de "res
 
 | Semana | Entrega | "Pronto quando…" |
 |---|---|---|
-| 1 | Fase 0 + 1: número conectado, webhook vivo | você manda "oi" e recebe eco automático |
+| 1 | Fase 0 + 0.5 (se Lovable) + 1: banco preparado, número conectado, webhook vivo | você manda "oi" e recebe eco automático |
 | 2–3 | Fase 2: agente-espião com 4 tools de leitura + resumo matinal | ela pergunta "quanto vendi?" e a resposta bate com o CRM |
 | 4–5 | Fase 3: pedido-rascunho com botões de aprovação | 5 pedidos reais registrados sem retrabalho |
 | 6+ | Fase 4: clientes falando com o agente | 1 semana sem intervenção sua no código |
