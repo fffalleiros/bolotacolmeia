@@ -82,6 +82,12 @@ Use o resultado para ajustar os nomes de tabela/coluna reais nos prompts seguint
 
 **Antes do Prompt 2, se o Prompt 1 revelou algum trigger nas tabelas que o agente vai escrever** (baixa de estoque, atualização de saldo, o que for): peça ao Lovable para mostrar o código dele e confirme se ele age em cima do registro *assim que criado* ou só quando algum campo de status/aprovação muda. Se agir sempre, peça a correção (gate por status) antes de seguir — senão o "rascunho" do agente já vai produzir efeito colateral real no banco, antes mesmo de ela aprovar.
 
+**Três lições gerais, aprendidas revisando um trigger real de estoque neste padrão (rascunho → aprovação), válidas para qualquer projeto:**
+
+1. **Nunca apague fisicamente o registro "pai" que o agente cria (venda, pedido, agendamento) — sempre marque como cancelado.** Um `DELETE`, especialmente em cascata via foreign key, pode fazer o Postgres "esconder" a linha-pai do trigger que deveria reverter o efeito colateral (como devolver estoque), porque dentro da mesma instrução SQL a linha já está marcada como apagada antes do trigger em cascata rodar. O efeito é perdido silenciosamente, sem erro. `UPDATE status = 'cancelado'` não tem esse problema e preserva histórico.
+2. **Qualquer lógica condicional baseada num campo de status livre (texto, sem CHECK) deve ser lista de permissão, nunca lista de exclusão.** "Ativo = tudo que não for X ou Y" trata qualquer valor desconhecido — `NULL`, erro de digitação, um status novo — como ativo por padrão, o que costuma ser o lado perigoso. "Ativo = só quando for exatamente Z" trata o desconhecido como seguro por padrão. Trave a coluna com `NOT NULL` + `DEFAULT` + `CHECK` assim que possível.
+3. **Toda função que o agente chama para criar um registro deve fixar internamente os campos sensíveis (como status), nunca aceitá-los como parâmetro do chamador.** Senão a trava "isso precisa de aprovação humana" vira apenas uma convenção que uma mensagem manipulada no WhatsApp (ou um bug de implementação) pode contornar.
+
 **Prompt 2 — Views seguras + função de escrita:**
 
 ```
@@ -98,11 +104,20 @@ registros com segurança, sem dar acesso direto às tabelas.
 
 2. Crie uma função no banco (RPC) chamada criar_pedido_rascunho que recebe
    cliente_id, itens, valor e data_entrega, insere um novo pedido com
-   status = 'rascunho' e retorna o id criado. Essa função só pode ser
-   chamada pela service role, nunca pelo público (anon).
+   status = 'rascunho' (fixo dentro da função — NÃO como parâmetro que eu
+   possa passar) e retorna o id criado. Essa função só pode ser chamada
+   pela service role, nunca pelo público (anon).
 
-3. Mantenha o RLS das tabelas originais exatamente como está hoje — essas
-   views e essa função são a única porta de entrada para o agente.
+3. Crie também uma função aprovar_pedido(pedido_id) que faz apenas
+   UPDATE ... SET status = 'confirmado' — nada além disso. Ela NUNCA deve
+   escrever diretamente em tabelas de estoque/saldo; se algum trigger
+   existente já reage a essa mudança de status, é ele quem ajusta o
+   estoque, não esta função (evita desconto em dobro). Da mesma forma,
+   crie recusar_pedido(pedido_id) fazendo UPDATE ... SET status =
+   'cancelado' — nunca um DELETE da linha.
+
+4. Mantenha o RLS das tabelas originais exatamente como está hoje — essas
+   views e funções são a única porta de entrada para o agente.
 
 Não crie nenhuma tela nova no app, isso é só estrutura de banco.
 ```
