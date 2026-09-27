@@ -12,7 +12,9 @@ Pesquisa de mercado crítica e orientada à decisão sobre a criação de um "ag
   - `04-evidencias-usuarios.md` — dores reais, Reclame Aqui, no-show, disposição a pagar
   - `05-segmentos-nicho.md` — matriz de 10 segmentos e escolha do beachhead
   - `06-custos-infra-regulacao.md` — WhatsApp API, NFS-e, Pix, LLM, LGPD, responsabilidade fiscal
-- **[pesquisa/naming/briefing-naming-resposta-claude-2026-09-27.md](pesquisa/naming/briefing-naming-resposta-claude-2026-09-27.md)** — resposta ao briefing de naming (v0.1, 27/09/2026): leitura estratégica, territórios criativos, longlist podada, pesquisa de colisão de marca/nome e shortlist de 11 candidatos, com 3 recomendados para teste humano.
+- **[pesquisa/naming/](pesquisa/naming/)** — naming da marca (briefing v0.1, 27/09/2026):
+  - `briefing-naming-resposta-claude-2026-09-27.md` — rodada 1: leitura estratégica, territórios, longlist podada, pesquisa de colisão e shortlist de 11.
+  - `consolidacao-rodada-2-2026-09-27.md` — rodada 2: consolidação de três respostas, achados novos reverificados (Jeitto, Combinado/Combinai, Boa Praça), régua única para todos os candidatos e comparadores; shortlist de 10, pódio Mão Cheia · Renome · Capaz.
 
 ## Conclusão em uma linha
 
