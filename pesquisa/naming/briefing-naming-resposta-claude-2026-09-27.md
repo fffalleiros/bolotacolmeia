@@ -90,11 +90,24 @@ Pesquisa feita por 4 lotes de busca web paralelos em 27/09/2026, cobrindo os 19 
 
 Pontuação ponderada conforme a matriz do briefing (seção 9): punch/distintividade 20%, memória/oralidade 15%, confiança 12%, orgulho do prestador 12%, naturalidade BR 10%, extensibilidade 10%, internacionalização 6%, força visual/sonora 6%, SEO 5%, colisão 4%.
 
+> **Correção (adicionada após revisão):** a primeira versão desta seção continha um erro de soma na pontuação ponderada de todos os 11 candidatos (a nota final não batia com as notas por critério declaradas). Refiz o cálculo critério a critério e o pódio mudou: **Jeito** passa a ser o nome de maior pontuação, não Capaz — a maior nota em naturalidade/memória/orgulho de Jeito supera o que ele perde em SEO e internacionalização, exatamente porque o briefing pesa punch+memória em 35% e internacional+SEO em só 11%. As notas por critério individuais não mudaram; só a soma final foi corrigida.
+
 ---
 
-### 🥇 Capaz — score 8,1/10
+### 🥇 Jeito — score 7,3/10
 
-- **Racional:** parte do território "ofício e orgulho". "Capaz" é a palavra que descreve exatamente o que o consumidor busca (alguém capaz de resolver) e o que o prestador quer ouvir sobre si. Funciona como adjetivo-substantivo, no padrão de marcas brasileiras que usam o artigo feminino ("a Capaz"), como "a Ativa", "a Extra".
+- **Racional:** território "quem resolve"/ofício. "Jeitinho brasileiro" é um dos conceitos culturais mais fortes do país: "ter jeito para" (habilidade), "dar um jeito" (resolver o que parecia sem solução) — nomeia com uma palavra só exatamente o que o prestador faz e o que o consumidor busca. Nenhuma colagem, nenhuma explicação de tecnologia necessária.
+- **Pronúncia:** /'ʒej-tu/, duas sílabas, sem ambiguidade de grafia ou acento.
+- **Associação:** habilidade prática, jogo de cintura, "sempre tem um jeito".
+- **Frase de uso:** "Encontrei um profissional na Jeito." / "Chama a Jeito." / "Ela tem jeito pra isso."
+- **Público:** funciona nos dois lados, mas com uma ressalva real: "jeitinho brasileiro" também pode significar "burlar regras" na cabeça de parte do público — precisa validar qual leitura domina antes de comprar a marca.
+- **Risco:** baixo por colisão comercial (nenhum concorrente direto encontrado; "Jeito Certo" é um app de field service B2B, nome composto, público diferente). O risco real não é de colisão, é de **ambiguidade de tom** — e é justamente por isso que está no topo do teste humano recomendado (seção 9), não já decidido.
+- **Arquitetura futura:** "Jeito Pro" soa estranho (a palavra já implica competência, "Pro" fica redundante) — prefira "Perfil Jeito", "Selo Jeito" (bom, soa a "selo de qualidade prática"), "Escola Jeito", "Comunidade Jeito".
+- **Evidência:** nenhuma colisão relevante no nicho-alvo; achado mais próximo foi "Jeito Certo" (field service B2B) — pesquisa de 27/09/2026.
+
+### 🥈 Capaz — score 7,1/10
+
+- **Racional:** território "ofício e orgulho". "Capaz" é a palavra que descreve exatamente o que o consumidor busca (alguém capaz de resolver) e o que o prestador quer ouvir sobre si. Funciona como adjetivo-substantivo, no padrão de marcas brasileiras que usam o artigo feminino ("a Capaz"), como "a Ativa", "a Extra".
 - **Pronúncia:** /ka-'pas/, duas sílabas fortes, sem ambiguidade de grafia ou acento.
 - **Associação:** competência, confiança, autoestima do prestador.
 - **Frase de uso:** "Encontrei um profissional na Capaz." / "Sou Capaz." (tagline natural para o prestador).
@@ -103,7 +116,7 @@ Pontuação ponderada conforme a matriz do briefing (seção 9): punch/distintiv
 - **Arquitetura futura:** Capaz Pro (funciona, ainda que soe reforçado), Perfil Capaz, Selo Capaz (bom — "selo de qualidade"), Escola Capaz (atenção: checar uso por projetos de educação inclusiva antes de adotar), Comunidade Capaz, Equipes Capaz.
 - **Evidência:** nenhuma colisão relevante no nicho-alvo no Brasil; app internacional homônimo em outra categoria (mensageria infantil) — pesquisa de 27/09/2026.
 
-### 🥈 Combina — score 7,7/10
+### 🥉 Combina — score 6,7/10
 
 - **Racional:** território "quem resolve". "Combinar" é o verbo que os brasileiros já usam para marcar um serviço ("vamos combinar um horário") — o nome nomeia a ação central do produto (bater o combinado entre prestador e cliente) sem precisar explicar a tecnologia.
 - **Pronúncia:** /kõ-'bi-na/, natural, sem ambiguidade.
@@ -114,58 +127,49 @@ Pontuação ponderada conforme a matriz do briefing (seção 9): punch/distintiv
 - **Arquitetura futura:** Combina Pro (funcional, levemente redundante), Perfil Combina, Selo Combina, Escola Combina (funciona razoavelmente).
 - **Evidência:** nenhum app/marketplace brasileiro homônimo no nicho — pesquisa de 27/09/2026.
 
-### 🥉 Camará — score 7,6/10
-
-- **Racional:** território "indicação espontânea". Vem de "camarada" — a palavra que carrega literalmente a ideia de "conheço alguém de confiança que resolve", com calor humano e sem copiar a estrutura de "IndicaAí".
-- **Pronúncia:** /ka-ma-'ra/, fácil, termina em vogal (bom para o ouvido brasileiro).
-- **Associação:** camaradagem, solidariedade, indicação entre conhecidos.
-- **Frase de uso:** "Encontrei um profissional na Camará." / "Chama a Camará."
-- **Público:** forte no lado consumidor; para o prestador, precisa de teste (camaradagem pode soar mais "social" que "profissional").
-- **Risco:** baixo — nenhuma colisão relevante no nicho encontrada. Atenção: a palavra tem uso mais consolidado no Nordeste/na música popular (ex. "Apesar de Você", de Chico Buarque) — testar reconhecimento em outras regiões antes de nacionalizar.
-- **Arquitetura futura:** Camará Pro, Perfil Camará, Selo Camará, Escola Camará, Comunidade Camará — todos soam naturais.
-- **Evidência:** nenhuma colisão relevante no segmento; achados irrelevantes (fabricante espanhol de maquinário agrícola) — pesquisa de 27/09/2026.
-
 ---
 
 ### Demais 8 nomes da shortlist
 
-**Trilha — score 7,5/10.** Território "carreira". Metáfora de trajetória profissional + rota física (relevante para deslocamento). Pronúncia fácil, extensível para "Escola Trilha"/"Trilha Pro". Risco médio: termo usado por dezenas de apps não relacionados (poluição de ASO), com um concorrente adjacente no setor imobiliário ("Trilha Online"). Nenhuma colisão no nicho exato.
+**Camará — score 6,6/10.** Território "indicação espontânea". Vem de "camarada" — carrega a ideia de "conheço alguém de confiança que resolve", sem copiar a estrutura de "IndicaAí". Risco baixo por colisão, mas de uso mais consolidado no Nordeste/música popular (Chico Buarque) — testar reconhecimento em outras regiões. Ficou muito perto do pódio (6,61 vs 6,65 de Combina) — vale manter como quarta opção de reserva.
 
-**Semente — score 7,4/10.** Território "carreira"/orgulho. Metáfora de crescimento a partir do pequeno, boa para "Escola Semente" e narrativa de expansão futura. Risco médio: "Semente Negócios" é uma aceleradora de startups brasileira consolidada e certificada B Corp — sem concorrência direta no nicho, mas com ruído de marca no ecossistema de startups.
+**Trilha — score 6,5/10.** Território "carreira". Metáfora de trajetória profissional + rota física (relevante para deslocamento). Pronúncia fácil, extensível para "Escola Trilha"/"Trilha Pro". Risco médio: termo usado por dezenas de apps não relacionados (poluição de ASO), com um concorrente adjacente no setor imobiliário ("Trilha Online"). Nenhuma colisão no nicho exato.
 
-**Bolota — score 7,4/10.** Território "abstração quente". Metáfora bolota→carvalho (começo pequeno, crescimento robusto); nenhuma colisão comercial relevante encontrada, e a suspeita de conotação vulgar não se confirmou nas buscas (mais associada a apelido carinhoso e a marcas de moda infantil). Ponto de atenção real: o tom é o mais "fofo" da lista, e o briefing pede explicitamente para evitar som infantil — a pontuação de "confiança" e "orgulho do prestador" foi penalizada por isso. Vale nota à parte: o **próprio nome deste repositório é "bolotacolmeia"** — não tratei isso como sinal de preferência (pode ser só um nome de repositório sem relação com naming), mas registro a coincidência para o usuário decidir se quer investigar a origem do nome.
+**Semente — score 6,4/10.** Território "carreira"/orgulho. Metáfora de crescimento a partir do pequeno, boa para "Escola Semente" e narrativa de expansão futura. Risco médio: "Semente Negócios" é uma aceleradora de startups brasileira consolidada e certificada B Corp — sem concorrência direta no nicho, mas com ruído de marca no ecossistema de startups.
 
-**Jeito — score 7,3/10.** Território "quem resolve"/ofício. "Jeitinho brasileiro" é um dos conceitos culturais mais fortes e ambíguos do país — pode significar tanto "habilidade para resolver" quanto "burlar regras". Nenhuma colisão comercial relevante, mas é palavra tão comum que a distintividade de marca e o SEO ficam prejudicados.
+**Bolota — score 6,4/10.** Território "abstração quente". Metáfora bolota→carvalho (começo pequeno, crescimento robusto); nenhuma colisão comercial relevante encontrada, e a suspeita de conotação vulgar não se confirmou nas buscas (mais associada a apelido carinhoso e a marcas de moda infantil). Ponto de atenção real: o tom é o mais "fofo" da lista, e o briefing pede explicitamente para evitar som infantil — por isso as notas de "confiança" e "orgulho do prestador" são as mais baixas de toda a shortlist, puxando o total para baixo apesar da alta memorabilidade. Vale nota à parte: o **próprio nome deste repositório é "bolotacolmeia"** — não tratei isso como sinal de preferência (pode ser só um nome de repositório sem relação com naming), mas registro a coincidência para o usuário decidir se quer investigar a origem do nome.
 
-**Junta — score 7,2/10.** Território "rede". Boa metáfora de união, mas colide semanticamente com usos institucionais ("junta comercial", "junta médica") e existe uma fintech de organização financeira chamada "Junta Já" usando a mesma raiz — risco baixo-médio, não direto.
+**Retoque — score 6,2/10.** Território "ofício e orgulho", ponte entre beleza e reforma (os dois sentidos de "retoque" no dia a dia). Risco baixo-médio: nenhum concorrente de peso, mas o termo é dominado por apps de edição de fotos/beleza facial nas lojas de app, o que pode confundir a categoria nas buscas. Extensibilidade fraca para aulas/assistência técnica — a metáfora não cobre bem esses ofícios.
 
-**Retoque — score 7,2/10.** Território "ofício e orgulho", ponte entre beleza e reforma (os dois sentidos de "retoque" no dia a dia). Risco baixo-médio: nenhum concorrente de peso, mas o termo é dominado por apps de edição de fotos/beleza facial nas lojas de app, o que pode confundir a categoria nas buscas.
+**Junta — score 6,2/10.** Território "rede". Boa metáfora de união, mas colide semanticamente com usos institucionais ("junta comercial", "junta médica") e existe uma fintech de organização financeira chamada "Junta Já" usando a mesma raiz — risco baixo-médio, não direto.
 
-**Ponte — score 6,9/10.** Território "rede". Metáfora de conexão universal, mas genérica — já usada por várias pequenas empresas brasileiras de tecnologia/branding, e foneticamente próxima da fintech "Pontte". Risco médio.
+**Ponte — score 5,9/10.** Território "rede". Metáfora de conexão universal, mas genérica — já usada por várias pequenas empresas brasileiras de tecnologia/branding, e foneticamente próxima da fintech "Pontte". Risco médio.
 
-**Malha — score 6,7/10.** Território "rede" (malha = mesh/rede, mas também tecido). Nenhuma colisão no nicho, mas a associação semântica dominante no Brasil é têxtil (Malwee) — dilui a metáfora de rede pretendida.
+**Malha — score 5,7/10.** Território "rede" (malha = mesh/rede, mas também tecido). Nenhuma colisão no nicho, mas a associação semântica dominante no Brasil é têxtil (Malwee) — dilui a metáfora de rede pretendida.
 
 ## 8. Comparação com Fulano e Benfazo
 
 | Critério | Fulano | Benfazo | Top 3 desta resposta |
 |---|---|---|---|
-| Oralidade/calor humano | Altíssima — expressão pronta ("conheço um fulano que resolve") | Média — soa inventado, precisa de repetição para colar | Alta (Camará, Combina) a muito alta (Capaz) |
-| Distintividade jurídica | Muito baixa — é uma palavra de dicionário (pronome indefinido), dificílima de proteger com exclusividade | Média — palavra inventada, mais protegível em tese, mas precisa checar proximidade com "Benfazer" (verbo real) | Alta nos 3 (nenhuma colisão direta encontrada no nicho) |
-| SEO / limpeza de busca | Péssima — aparece em milhões de contextos não relacionados | Não checada nesta rodada (comparador, não candidato ativo) | Boa a muito boa nos 3 |
-| Orgulho do prestador | Baixo a médio — "ser um fulano" não é necessariamente elogio | Médio — "bem-fazer" é positivo mas soa institucional | Bom (Capaz, Camará) a médio (Combina) |
-| Confiança do consumidor | Médio — remete a informalidade, não necessariamente a verificação | Médio-alto — "bem" carrega intenção positiva | Bom nos 3, sem a bagagem de informalidade de "Fulano" |
+| Oralidade/calor humano | Altíssima — expressão pronta ("conheço um fulano que resolve") | Média — soa inventado, precisa de repetição para colar | Muito alta (Jeito) a alta (Capaz, Combina) |
+| Distintividade jurídica | Muito baixa — é uma palavra de dicionário (pronome indefinido), dificílima de proteger com exclusividade | Média — palavra inventada, mais protegível em tese, mas precisa checar proximidade com "Benfazer" (verbo real) | Alta nos 3 (nenhuma colisão direta encontrada no nicho); "Jeito" e "Combina" são palavras comuns, o que pode gerar objeção de baixa distintividade no exame do INPI — mesma família de risco que "Fulano", em grau menor |
+| SEO / limpeza de busca | Péssima — aparece em milhões de contextos não relacionados | Não checada nesta rodada (comparador, não candidato ativo) | Fraca em Jeito (palavra extremamente comum), boa em Capaz e Combina |
+| Orgulho do prestador | Baixo a médio — "ser um fulano" não é necessariamente elogio | Médio — "bem-fazer" é positivo mas soa institucional | Bom (Jeito, Capaz) a médio (Combina) |
+| Confiança do consumidor | Médio — remete a informalidade, não necessariamente a verificação | Médio-alto — "bem" carrega intenção positiva | Bom nos 3, sem a bagagem de informalidade de "Fulano"; "Jeito" tem uma ambiguidade própria (ver ficha) que precisa de teste |
 | Risco de infantilização | Real — "Fulano" pode soar pouco sério para um selo de qualidade ou uma "Escola [Nome]" | Baixo | Baixo nos 3 |
-| Extensibilidade (Pro/Selo/Escola) | Fraca — "Selo Fulano", "Escola Fulano" soam estranhos | Razoável | Boa nos 3 |
+| Extensibilidade (Pro/Selo/Escola) | Fraca — "Selo Fulano", "Escola Fulano" soam estranhos | Razoável | Boa em Capaz e Combina; "Jeito Pro" soa redundante (ver ficha) |
 
-**Leitura:** Fulano continua sendo o melhor teste de calor emocional/oralidade — é difícil bater esse número —, mas paga um preço alto em distintividade jurídica e em seriedade para os usos formais da arquitetura de marca (selo, escola). Nenhum dos três finalistas iguala a familiaridade instantânea de "Fulano", mas os três evitam o problema central de "Fulano" (ser, literalmente, uma palavra do dicionário para "pessoa não identificada") e o de "Benfazo" (soar construído/institucional). **Capaz** é o que chega mais perto de "Fulano" em carga emocional (fala diretamente sobre a pessoa que resolve), com uma marca muito mais defensável.
+**Leitura:** Fulano continua sendo o melhor teste de calor emocional/oralidade — é difícil bater esse número —, mas paga um preço alto em distintividade jurídica e em seriedade para os usos formais da arquitetura de marca (selo, escola). Nenhum dos três finalistas iguala a familiaridade instantânea de "Fulano", mas os três evitam o problema central de "Fulano" (ser, literalmente, uma palavra do dicionário para "pessoa não identificada") e o de "Benfazo" (soar construído/institucional). **Jeito** é o que chega mais perto de "Fulano" em naturalidade e oralidade — os dois são palavras do dia a dia, não marcas construídas —, com a vantagem de nomear a habilidade em vez de uma pessoa indefinida; mas herda uma versão mais leve do mesmo risco de distintividade jurídica de "Fulano", por ser também palavra comum.
 
 ## 9. Três nomes para validação humana
 
-1. **Capaz** — maior score ponderado, funciona nos dois lados do marketplace, risco de colisão baixo no Brasil.
-2. **Combina** — melhor tradução da ação central do produto (bater o combinado), risco de colisão mais baixo de toda a lista.
-3. **Camará** — melhor território de indicação espontânea sem copiar a estrutura de nomes já existentes na categoria (IndicaAí etc.), mas precisa de teste de reconhecimento fora do eixo Nordeste.
+1. **Jeito** — maior score ponderado da shortlist (7,3/10); nomeia a habilidade de resolver com uma única palavra muito brasileira, mas carrega o risco real de ambiguidade com "jeitinho" (burlar regras) — é por isso, não apesar disso, que precisa ir a teste humano antes de qualquer decisão.
+2. **Capaz** — segundo maior score (7,1/10); funciona nos dois lados do marketplace, risco de colisão baixo no Brasil, sem a ambiguidade de tom de "Jeito".
+3. **Combina** — terceiro maior score (6,7/10) e risco de colisão mais baixo de toda a lista; melhor tradução da ação central do produto (bater o combinado).
 
-Sugestão de teste (usar as perguntas da seção 15 do briefing, sem explicar o significado pretendido): apresentar os três nomes isolados a 5+ síndicos/moradores e 5+ prestadores de serviço (dos diferentes ofícios-alvo, não só beleza ou não só manutenção), e registrar o que cada grupo entende, se confiaria, e se o prestador teria orgulho de usar no perfil.
+**Camará** ficou a 0,04 ponto de Combina (6,61 vs 6,65) — praticamente empatado; vale incluir como quarta opção no mesmo teste se o usuário quiser testar 4 em vez de 3.
+
+Sugestão de teste (usar as perguntas da seção 15 do briefing, sem explicar o significado pretendido): apresentar os nomes isolados a 5+ síndicos/moradores e 5+ prestadores de serviço (dos diferentes ofícios-alvo, não só beleza ou não só manutenção), e registrar o que cada grupo entende, se confiaria, e se o prestador teria orgulho de usar no perfil. Para "Jeito" especificamente, perguntar de forma explícita: "o que te vem à cabeça quando ouve que uma empresa de serviços se chama Jeito?" — para separar a leitura "habilidade" da leitura "malandragem".
 
 ## 10. Limitações e verificações faltantes
 
